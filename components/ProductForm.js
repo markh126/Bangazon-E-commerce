@@ -56,7 +56,7 @@ const ProductForm = ({ obj }) => {
         category: currentProduct.category,
         sellerId: user.id,
       };
-      updateProduct(product, user.uid).then(() => router.push('/'));
+      updateProduct(product, user.uid).then(() => router.push('/sellers/store'));
     } else {
       const product = {
         id: currentProduct.id,
@@ -67,8 +67,7 @@ const ProductForm = ({ obj }) => {
         category: currentProduct.category,
         sellerId: user.id,
       };
-      console.warn(user);
-      createProduct(product, user.uid).then(() => router.push('/'));
+      createProduct(product, user.uid).then(() => router.push('/sellers/store'));
     }
   };
 
