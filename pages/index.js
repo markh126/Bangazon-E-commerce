@@ -18,7 +18,7 @@ function Home() {
   return (
     <>
       <div className="post-header">
-        <h1 className="welcome-text">Welcome, {user.first_name}</h1>
+        <h1 className="welcome-text">Welcome, {user.first_name} {user.last_name}</h1>
         {console.warn(user)}
       </div>
       <hr />
