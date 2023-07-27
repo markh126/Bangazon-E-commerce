@@ -1,4 +1,3 @@
-// import axios from 'axios';
 import { clientCredentials } from '../client';
 
 const getOrders = () => new Promise((resolve, reject) => {
@@ -57,16 +56,16 @@ const deleteOrder = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const addToCart = (productId, quantity, customerId) => {
-  fetch(`${clientCredentials.databaseURL}/api/orders/${customerId}/add_to_cart/`, {
+const addToCart = (productId, quantity, userId) => {
+  fetch(`${clientCredentials.databaseURL}/api/orders/${userId}/add_to_cart/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `${customerId}`, // If needed, replace this with the actual user token or authentication header
+      Authorization: `${userId}`,
     },
     body: JSON.stringify({
       product_id: productId,
-      quantity, // Make sure the quantity property is included in the request body
+      quantity,
     }),
   })
     .then((response) => response.json())
@@ -77,19 +76,6 @@ const addToCart = (productId, quantity, customerId) => {
       console.error('Error adding item to cart:', error);
     });
 };
-
-// const addToCart = (productId, quantity) => {
-//   axios.post(`${clientCredentials.databaseURL}/api/orders/add_to_cart/`, {
-//     product_id: productId,
-//     quantity,
-//   })
-//     .then((response) => {
-//       console.warn('Item added to cart successfully', response);
-//     })
-//     .catch((error) => {
-//       console.error('Error adding item to cart:', error);
-//     });
-// };
 
 export {
   getOrders,

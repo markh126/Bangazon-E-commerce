@@ -17,13 +17,10 @@ const ProductCard = ({
   const [quantity, setQuantity] = useState(1);
   const { user } = useAuth();
   const addItemToCart = () => {
-    // Ensure that the product has an 'id' property
     if (!id) {
       console.error('Invalid product information');
       return;
     }
-
-    // Call the API function to add the product to the cart
     addToCart(id, quantity, user.id);
   };
 
