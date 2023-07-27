@@ -13,7 +13,7 @@ const getProducts = () => new Promise((resolve, reject) => {
 });
 
 const getSellerProducts = (userId) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/products?seller_product=${userId}`)
+  fetch(`${clientCredentials.databaseURL}/products?sellerId=${userId}`)
     .then((response) => response.json())
     .then(resolve)
     .catch(reject);
@@ -40,8 +40,8 @@ const createProduct = (product, uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const updateProduct = (id, product) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/products/${id}`, {
+const updateProduct = (product) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/products/${product.id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',

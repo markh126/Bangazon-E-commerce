@@ -11,7 +11,14 @@ function Store() {
   const { user } = useAuth();
 
   const getAllProducts = () => {
-    getSellerProducts(user.id).then((data) => setProducts(data));
+    getSellerProducts(user.id)
+      .then((data) => {
+        console.warn(data); // Check if the data contains the correct products for the current user
+        setProducts(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   useEffect(() => {
@@ -21,7 +28,7 @@ function Store() {
   return (
     <>
       <div className="post-header">
-        <h1 className="welcome-text">My Store</h1>
+        <h1 className="welcome-text text-center">My Store</h1>
       </div>
       <hr />
       <Button
@@ -40,7 +47,8 @@ function Store() {
                 <div key={`product--${product.id}`} className="col-lg-4 col-h-100 mb-3 d-flex align-items-stretch user-cards">
                   <div className="card-body d-flex flex-column">
                     <section className="user">
-                      <ProductCard id={product.id} name={product.name} productImageUrl={product.product_image_url} price={product.price} productInfo={product.product_info} category={product.category} sellerId={product.seller_id} onUpdate={getAllProducts} />
+                      {console.warn(products)}
+                      <ProductCard id={product.id} name={product.name} productImageUrl={product.product_image_url} price={product.price} productInfo={product.product_info} category={product.category} sellerId={product.seller_id} added={product.added} onUpdate={getAllProducts} />
                     </section>
                   </div>
                 </div>

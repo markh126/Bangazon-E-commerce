@@ -106,8 +106,8 @@ const ProductForm = ({ obj }) => {
             <option>Select A Category</option>
             <option value="DVD">DVD</option>
             <option value="Blu-ray/UHD">Blu-ray/UHD</option>
-            <option value="CD">CD</option>
-            <option value="Vinyl">Vinyl</option>
+            <option value="VHS">VHS</option>
+            <option value="LaserDisk">LaserDisk</option>
             <option value="Random">Random</option>
           </Form.Select>
         </FloatingLabel>
