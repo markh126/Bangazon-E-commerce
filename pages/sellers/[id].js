@@ -2,7 +2,6 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { Button, Image } from 'react-bootstrap';
-import Link from 'next/link';
 import { useAuth } from '../../utils/context/authContext';
 import { getSingleProduct, deleteProduct } from '../../utils/data/productData';
 
@@ -29,6 +28,7 @@ export default function ViewProducts() {
         <title>Product Page</title>
       </Head>
       <div className="d-flex flex-column">
+        {console.warn(productDetails)}
         <Image
           className="product-image"
           src={productDetails.product_image_url}
@@ -44,9 +44,7 @@ export default function ViewProducts() {
         <p className="post-content">{productDetails.product_info} </p>
         <p className="post-details-text">Category: {productDetails.category} </p>
         <footer>
-          <Link passHref href={`/sellers/store/${id}`}>
-            <a href={`/sellers/store/${id}`}>Seller: {productDetails.seller_id?.first_name} {productDetails.seller_id?.last_name}</a>
-          </Link>
+          <p>Seller: {productDetails.seller_id?.first_name} {productDetails.seller_id?.last_name}</p>
         </footer>
         {isCurrentUserProduct ? (
           <>

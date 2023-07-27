@@ -18,8 +18,7 @@ function Home() {
   return (
     <>
       <div className="post-header">
-        <h1 className="welcome-text">Welcome, {user.first_name} {user.last_name}</h1>
-        {console.warn(user)}
+        <h1 className="welcome-text text-center">Welcome, {user.first_name} {user.last_name}</h1>
       </div>
       <hr />
       <div className="container">
@@ -30,7 +29,7 @@ function Home() {
                 <div key={`product--${product.id}`} className="col-lg-4 col-h-100 mb-3 d-flex align-items-stretch user-cards">
                   <div className="card-body d-flex flex-column">
                     <section className="user">
-                      <ProductCard id={product.id} name={product.name} productImageUrl={product.product_image_url} price={product.price} productInfo={product.product_info} category={product.category} sellerId={product.seller_id} onUpdate={getAllProducts} />
+                      <ProductCard id={product.id} name={product.name} productImageUrl={product.product_image_url} price={product.price} productInfo={product.product_info} category={product.category} sellerId={product.seller_id} added={product.added} onUpdate={getAllProducts} />
                     </section>
                   </div>
                 </div>

@@ -15,7 +15,7 @@ export default function EditProduct() {
   return (
     <div>
       <h1>Edit Product</h1>
-      <ProductForm user={editProduct} />
+      <ProductForm obj={editProduct} />
     </div>
   );
 }

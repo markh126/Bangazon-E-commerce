@@ -14,14 +14,16 @@ export default function UserProfile() {
   const [products, setProducts] = useState([]);
   const { user } = useAuth();
   const router = useRouter();
+  const id = parseInt(router.query.id, 10);
+  const isCurrentUserProfile = user.id === userDetails.id;
 
   const getAllProducts = () => {
-    getProductsBySeller(user.id).then((data) => setProducts(data));
+    getProductsBySeller(id).then((data) => setProducts(data));
   };
 
   useEffect(() => {
     getAllProducts();
-  }, [user]);
+  }, [id]);
 
   const deleteProfile = () => {
     if (window.confirm('Are you sure you would like to delete your profile? You cannot undo this.')) {
@@ -30,13 +32,13 @@ export default function UserProfile() {
   };
 
   const getAUser = () => {
-    getSingleUser(user.id).then((data) => setUserDetails(data));
+    getSingleUser(id).then((data) => setUserDetails(data));
   };
 
   useEffect(() => {
-    getAUser(user.id);
+    getAUser(id);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [id]);
 
   return (
     <>
@@ -58,16 +60,18 @@ export default function UserProfile() {
         <h5 className="post-details-title">{userDetails.email}</h5>
         <p className="post-content">Username: {userDetails.username} </p>
         <p className="post-details-text">Bio: {userDetails.bio} </p>
-        <Button
-          className="sub-btn"
-          onClick={() => {
-            router.push(`/customers/edit/${userDetails.id}`);
-          }}
-        >
-          Edit Profile
-        </Button>
-        <Button variant="danger" className="unsub-btn" onClick={deleteProfile}> Delete Profile</Button>
-        <Button variant="success" className="signout-btn" onClick={signOut}> Sign Out</Button>
+        {isCurrentUserProfile ? (
+          <>
+            <Button
+              className="sub-btn"
+              onClick={() => {
+                router.push(`/customers/edit/${userDetails.id}`);
+              }}
+            >
+              Edit Profile
+            </Button><Button variant="danger" className="unsub-btn" onClick={deleteProfile}> Delete Profile</Button><Button variant="success" className="signout-btn" onClick={signOut}> Sign Out</Button>
+          </>
+        ) : ''}
         <hr />
         <div className="row">
           {products.map((product) => (
