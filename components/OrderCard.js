@@ -5,16 +5,35 @@ import { Card } from 'react-bootstrap';
 
 const OrderCard = ({
   id,
-}) => (
-  <Card className="text-center product-card" style={{ width: '18rem' }}>
-    <Card.Body>
-      <Card.Title>${id}
-      </Card.Title>
-    </Card.Body>
-  </Card>
-);
+  datePlaced,
+  open,
+}) => {
+  const orderStatus = () => {
+    if (open) {
+      return 'Open';
+    }
+    return 'Closed';
+  };
+
+  return (
+    <Card className="text-center product-card" style={{ width: '18rem' }}>
+      <Card.Body>
+        <Card.Title>
+          Order Date: {datePlaced}
+        </Card.Title>
+      </Card.Body>
+      <Card.Footer>
+        Order ID #: {id} <br />
+        Status: {orderStatus()}
+      </Card.Footer>
+    </Card>
+  );
+};
+
 OrderCard.propTypes = {
   id: PropTypes.number.isRequired,
+  datePlaced: PropTypes.string.isRequired,
+  open: PropTypes.bool.isRequired,
 };
 
 export default OrderCard;

@@ -48,7 +48,7 @@ function Store() {
                   <div className="card-body d-flex flex-column">
                     <section className="user">
                       {console.warn(products)}
-                      <ProductCard id={product.id} name={product.name} productImageUrl={product.product_image_url} price={product.price} productInfo={product.product_info} category={product.category} sellerId={product.seller_id} added={product.added} onUpdate={getAllProducts} />
+                      <ProductCard id={product.id} name={product.name} productImageUrl={product.product_image_url} price={product.price} productInfo={product.product_info} category={product.category} sellerId={product.seller_id} joined={product.joined} onUpdate={getAllProducts} />
                     </section>
                   </div>
                 </div>

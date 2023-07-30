@@ -56,7 +56,7 @@ const deleteOrder = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const addToCart = (productId, quantity, userId) => {
+const addToCart = (productId, userId) => {
   fetch(`${clientCredentials.databaseURL}/api/orders/${userId}/add_to_cart/`, {
     method: 'POST',
     headers: {
@@ -65,7 +65,6 @@ const addToCart = (productId, quantity, userId) => {
     },
     body: JSON.stringify({
       product_id: productId,
-      quantity,
     }),
   })
     .then((response) => response.json())
@@ -77,6 +76,13 @@ const addToCart = (productId, quantity, userId) => {
     });
 };
 
+const removeFromCart = (productId, userId) => fetch(`${clientCredentials.databaseURL}/api/orders/${userId}/remove_from_cart/${productId}`, {
+  method: 'DELETE',
+  headers: {
+    Authorization: `${userId}`,
+  },
+});
+
 export {
   getOrders,
   getSingleOrder,
@@ -84,4 +90,5 @@ export {
   updateOrder,
   deleteOrder,
   addToCart,
+  removeFromCart,
 };
